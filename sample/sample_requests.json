@@ -1,0 +1,35 @@
+[
+  {
+    "host": "blog.example.com",
+    "uri": "/wp-login.php",
+    "headers": {
+      "Server": "nginx",
+      "X-Powered-By": "PHP/8.1"
+    },
+    "cookies": {
+      "wordpress_logged_in": "1"
+    },
+    "user_agent": "Mozilla/5.0"
+  },
+  {
+    "host": "grafana.internal",
+    "uri": "/api/ds/query",
+    "headers": {
+      "X-Grafana-Version": "10.4.0",
+      "Content-Type": "application/json"
+    },
+    "cookies": {
+      "grafana_session": "abc"
+    },
+    "user_agent": "curl/8.0"
+  },
+  {
+    "host": "mystery.public.example",
+    "uri": "/internal/admin/health",
+    "headers": {
+      "Server": "unknown"
+    },
+    "cookies": {},
+    "user_agent": "Mozilla/5.0"
+  }
+]

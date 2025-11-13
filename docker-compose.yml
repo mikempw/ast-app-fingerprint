@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  rules-updater:
+    build: ./classifier
+    container_name: ast-rules-updater
+    command: ["python","fetch_rules.py"]
+    environment:
+      SOURCES_WAPPALYZER: "${SOURCES_WAPPALYZER:-https://github.com/AliasIO/wappalyzer.git}"
+      SOURCES_NUCLEI: "${SOURCES_NUCLEI:-https://github.com/projectdiscovery/nuclei-templates.git}"
+      SOURCES_WHATWEB: "${SOURCES_WHATWEB:-https://github.com/urbanadventurer/WhatWeb.git}"
+      MAX_RULES: "${MAX_RULES:-5000}"
+      GIT_TERMINAL_PROMPT: "0"
+    volumes:
+      - rules_cache:/rules_cache
+
+  classifier:
+    build: ./classifier
+    container_name: ast-classifier
+    environment:
+      USE_LLM: "${USE_LLM:-0}"
+      OLLAMA_URL: "${OLLAMA_URL:-http://ollama:11434}"
+      OLLAMA_MODEL: "${OLLAMA_MODEL:-qwen2.5:3b-instruct-q4_K_M}"
+      API_TOKEN: "${API_TOKEN:-changeme}"
+      RULES_PATH: "${RULES_PATH:-/rules_cache/generated/combined_rules.yaml}"
+    ports:
+      - "8089:8080"
+    volumes:
+      - rules_cache:/rules_cache
+      - ./classifier/rules.yaml:/app/rules.yaml:ro
+    depends_on:
+      - rules-updater
+
+  ollama:
+    image: ollama/ollama:0.3.14
+    container_name: ast-ollama
+    profiles: ["ollama"]
+    ports:
+      - "${OLLAMA_HOST_PORT:-11434}:11434"
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+    volumes:
+      - ollama:/root/.ollama
+    entrypoint: ["/bin/sh","-lc","/usr/bin/ollama serve & sleep 3 && ollama pull qwen2.5:3b-instruct-q4_K_M && wait"]
+
+volumes:
+  ollama: {}
+  rules_cache: {}

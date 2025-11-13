@@ -1,0 +1,22 @@
+# OS / editor
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node / frontend
+node_modules/
+
+# Docker artifacts
+*.log
+*.tmp
+.env
+# Project volumes / generated rules cache (optional)
+rules_cache/

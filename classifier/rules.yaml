@@ -1,0 +1,23 @@
+- id: wordpress
+  label: "CMS: WordPress"
+  weight: 90
+  uri_substr: ["/wp-admin", "/wp-login.php", "/wp-content", "/wp-json"]
+  header_any: ["x-powered-by:.*php", "server:.*(nginx|apache)"]
+  cookie_any: ["wordpress_logged_in", "wp-settings", "wp-"]
+  ua_any: []
+
+- id: grafana
+  label: "Monitoring: Grafana"
+  weight: 85
+  uri_substr: ["/api/search", "/api/ds/query", "/login", "/api/annotations"]
+  header_any: ["x-grafana-"]
+  cookie_any: ["grafana_session"]
+  ua_any: []
+
+- id: shadow-api
+  label: "Shadow API (suspicious/unknown public endpoint)"
+  weight: 50
+  uri_substr: ["/internal", "/admin", "/debug"]
+  header_any: []
+  cookie_any: []
+  ua_any: []

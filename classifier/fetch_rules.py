@@ -1,7 +1,7 @@
 \
 import os, subprocess, json, re, shutil, glob, yaml, sys, pathlib, zipfile, io, urllib.request
 
-WAPP_URL = os.getenv("SOURCES_WAPPALYZER", "https://github.com/AliasIO/wappalyzer.git")
+WAPP_URL = os.getenv("SOURCES_WAPPALYZER", "https://github.com/s0md3v/wappalyzer-next.git")
 NUC_URL = os.getenv("SOURCES_NUCLEI", "https://github.com/projectdiscovery/nuclei-templates.git")
 WW_URL = os.getenv("SOURCES_WHATWEB", "https://github.com/urbanadventurer/WhatWeb.git")
 MAX_RULES = int(os.getenv("MAX_RULES","5000"))

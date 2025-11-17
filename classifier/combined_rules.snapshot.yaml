@@ -1,3 +1,346 @@
+- id: databricks
+  label: "AI/ML: Databricks"
+  weight: 90
+  uri_substr: ["/api/2.0/", "/workspace/", "/_static/"]
+  header_any: ["x-databricks-"]
+  cookie_any: ["databricks_session", "db-token"]
+  ua_any: []
+- id: colab
+  label: "AI/ML: Google Colab"
+  weight: 90
+  uri_substr: ["/notebooks/", "/api/contents"]
+  header_any: []
+  cookie_any: ["oauth_token", "colab_session"]
+  ua_any: []
+- id: kaggle
+  label: "AI/ML: Kaggle"
+  weight: 90
+  uri_substr: ["/api/v1/", "/competitions/", "/kernels/"]
+  header_any: []
+  cookie_any: ["ka_sessionid", "kaggle_session"]
+  ua_any: []
+- id: valohai
+  label: "AI/ML: Valohai"
+  weight: 85
+  uri_substr: ["/api/v0/", "/executions/", "/projects/"]
+  header_any: ["x-valohai-"]
+  cookie_any: ["valohai_session"]
+  ua_any: []
+- id: lightning-ai
+  label: "AI/ML: Lightning.ai"
+  weight: 85
+  uri_substr: ["/api/v1/", "/apps/", "/studios/"]
+  header_any: ["x-lightning-"]
+  cookie_any: ["lightning_session"]
+  ua_any: []
+- id: replicate
+  label: "AI/ML: Replicate"
+  weight: 90
+  uri_substr: ["/v1/predictions", "/v1/models"]
+  header_any: ["x-replicate-"]
+  cookie_any: ["replicate_session"]
+  ua_any: []
+- id: modal
+  label: "AI/ML: Modal"
+  weight: 85
+  uri_substr: ["/api/v1/", "/functions/", "/deployments/"]
+  header_any: ["x-modal-"]
+  cookie_any: ["modal_session"]
+  ua_any: []
+- id: runpod
+  label: "AI/ML: RunPod"
+  weight: 85
+  uri_substr: ["/api/v1/", "/pods/", "/graphql"]
+  header_any: ["x-runpod-"]
+  cookie_any: ["runpod_session"]
+  ua_any: []
+- id: banana-dev
+  label: "AI/ML: Banana.dev"
+  weight: 85
+  uri_substr: ["/api/v4/", "/start/", "/check/"]
+  header_any: ["x-banana-"]
+  cookie_any: []
+  ua_any: []
+- id: vast-ai
+  label: "AI/ML: Vast.ai"
+  weight: 85
+  uri_substr: ["/api/v0/", "/instances/", "/offers/"]
+  header_any: []
+  cookie_any: ["vast_session"]
+  ua_any: []
+- id: lambda-labs
+  label: "AI/ML: Lambda Labs"
+  weight: 85
+  uri_substr: ["/api/v1/", "/instances/", "/cloud/"]
+  header_any: ["x-lambda-"]
+  cookie_any: ["lambda_session"]
+  ua_any: []
+- id: anyscale
+  label: "AI/ML: Anyscale"
+  weight: 90
+  uri_substr: ["/api/v2/", "/services/", "/jobs/"]
+  header_any: ["x-anyscale-"]
+  cookie_any: ["anyscale_session"]
+  ua_any: []
+- id: scale-ai
+  label: "AI/ML: Scale AI"
+  weight: 85
+  uri_substr: ["/api/v1/", "/tasks/", "/batches/"]
+  header_any: ["x-scale-"]
+  cookie_any: ["scale_session"]
+  ua_any: []
+- id: v7-darwin
+  label: "AI/ML: V7 Darwin"
+  weight: 85
+  uri_substr: ["/api/v2/", "/datasets/", "/workflows/"]
+  header_any: ["x-darwin-"]
+  cookie_any: ["darwin_session"]
+  ua_any: []
+- id: supervisely
+  label: "AI/ML: Supervisely"
+  weight: 85
+  uri_substr: ["/api/v3/", "/projects/", "/datasets/"]
+  header_any: []
+  cookie_any: ["supervisely_session"]
+  ua_any: []
+- id: roboflow
+  label: "AI/ML: Roboflow"
+  weight: 90
+  uri_substr: ["/api/", "/workspace/", "/dataset/"]
+  header_any: []
+  cookie_any: ["rf_session", "roboflow_token"]
+  ua_any: []
+- id: clarifai
+  label: "AI/ML: Clarifai"
+  weight: 85
+  uri_substr: ["/v2/models", "/v2/workflows", "/v2/inputs"]
+  header_any: ["x-clarifai-"]
+  cookie_any: []
+  ua_any: []
+- id: snorkel-ai
+  label: "AI/ML: Snorkel AI"
+  weight: 85
+  uri_substr: ["/api/", "/applications/", "/data_slices/"]
+  header_any: []
+  cookie_any: ["snorkel_session"]
+  ua_any: []
+- id: aquarium
+  label: "AI/ML: Aquarium Learning"
+  weight: 85
+  uri_substr: ["/api/", "/datasets/", "/models/"]
+  header_any: []
+  cookie_any: ["aquarium_session"]
+  ua_any: []
+- id: dask
+  label: "AI/ML: Dask"
+  weight: 85
+  uri_substr: ["/status", "/info", "/json/"]
+  header_any: ["server:.*dask"]
+  cookie_any: []
+  ua_any: []
+- id: luigi
+  label: "AI/ML: Luigi"
+  weight: 85
+  uri_substr: ["/api/", "/static/visualiser/"]
+  header_any: []
+  cookie_any: ["luigi_session"]
+  ua_any: []
+- id: zenml
+  label: "AI/ML: ZenML"
+  weight: 85
+  uri_substr: ["/api/v1/", "/stacks/", "/pipelines/"]
+  header_any: ["x-zenml-"]
+  cookie_any: ["zenml_session"]
+  ua_any: []
+- id: kedro
+  label: "AI/ML: Kedro"
+  weight: 85
+  uri_substr: ["/api/", "/pipelines/", "/nodes/"]
+  header_any: []
+  cookie_any: ["kedro_session"]
+  ua_any: []
+- id: great-expectations
+  label: "AI/ML: Great Expectations"
+  weight: 85
+  uri_substr: ["/expectations/", "/validations/", "/checkpoints/"]
+  header_any: []
+  cookie_any: ["ge_session"]
+  ua_any: []
+- id: evidently-ai
+  label: "AI/ML: Evidently AI"
+  weight: 85
+  uri_substr: ["/api/projects/", "/api/snapshots/"]
+  header_any: ["x-evidently-"]
+  cookie_any: []
+  ua_any: []
+- id: fiddler-ai
+  label: "AI/ML: Fiddler AI"
+  weight: 85
+  uri_substr: ["/api/v1/", "/projects/", "/models/"]
+  header_any: []
+  cookie_any: ["fiddler_session"]
+  ua_any: []
+- id: arthur-ai
+  label: "AI/ML: Arthur AI"
+  weight: 85
+  uri_substr: ["/api/v3/", "/models/", "/inferences/"]
+  header_any: ["x-arthur-"]
+  cookie_any: ["arthur_session"]
+  ua_any: []
+- id: arize-ai
+  label: "AI/ML: Arize AI"
+  weight: 90
+  uri_substr: ["/graphql", "/api/", "/models/"]
+  header_any: []
+  cookie_any: ["arize_session"]
+  ua_any: []
+- id: whylabs
+  label: "AI/ML: WhyLabs"
+  weight: 85
+  uri_substr: ["/api/", "/models/", "/monitor/"]
+  header_any: ["x-whylabs-"]
+  cookie_any: []
+  ua_any: []
+- id: truera
+  label: "AI/ML: TruEra"
+  weight: 85
+  uri_substr: ["/api/v1/", "/projects/", "/models/"]
+  header_any: []
+  cookie_any: ["truera_session"]
+  ua_any: []
+- id: aporia
+  label: "AI/ML: Aporia"
+  weight: 85
+  uri_substr: ["/api/", "/models/", "/monitors/"]
+  header_any: []
+  cookie_any: ["aporia_session"]
+  ua_any: []
+- id: superwise
+  label: "AI/ML: Superwise"
+  weight: 85
+  uri_substr: ["/api/v1/", "/models/", "/incidents/"]
+  header_any: ["x-superwise-"]
+  cookie_any: []
+  ua_any: []
+- id: robust-intelligence
+  label: "AI/ML: Robust Intelligence"
+  weight: 85
+  uri_substr: ["/api/v1/", "/stress-tests/", "/projects/"]
+  header_any: []
+  cookie_any: ["rime_session"]
+  ua_any: []
+- id: comet-ai
+  label: "AI/ML: Comet.ai"
+  weight: 85
+  uri_substr: ["/api/rest/v2/", "/experiments/", "/registry/"]
+  header_any: []
+  cookie_any: ["comet_session"]
+  ua_any: []
+- id: sagemaker-studio
+  label: "AI/ML: AWS SageMaker Studio"
+  weight: 90
+  uri_substr: ["/jupyter/default/", "/studio/"]
+  header_any: ["x-amzn-sagemaker-"]
+  cookie_any: []
+  ua_any: []
+- id: google-ai-platform
+  label: "AI/ML: Google AI Platform"
+  weight: 90
+  uri_substr: ["/v1/projects", "/v1/models"]
+  header_any: ["x-goog-api-client"]
+  cookie_any: []
+  ua_any: []
+- id: azure-ml-studio
+  label: "AI/ML: Azure ML Studio"
+  weight: 90
+  uri_substr: ["/api/", "/studio/", "/experiments/"]
+  header_any: ["x-ms-azureml-"]
+  cookie_any: []
+  ua_any: []
+- id: floydHub
+  label: "AI/ML: FloydHub"
+  weight: 85
+  uri_substr: ["/api/v1/", "/projects/", "/experiments/"]
+  header_any: []
+  cookie_any: ["floydhub_session"]
+  ua_any: []
+- id: spell
+  label: "AI/ML: Spell"
+  weight: 85
+  uri_substr: ["/api/v1/", "/runs/", "/workflows/"]
+  header_any: []
+  cookie_any: ["spell_session"]
+  ua_any: []
+- id: grid-ai
+  label: "AI/ML: Grid.ai"
+  weight: 85
+  uri_substr: ["/api/v1/", "/datastores/", "/runs/"]
+  header_any: ["x-grid-"]
+  cookie_any: []
+  ua_any: []
+- id: paperspace-core
+  label: "AI/ML: Paperspace Core"
+  weight: 85
+  uri_substr: ["/api/", "/machines/", "/notebooks/"]
+  header_any: []
+  cookie_any: ["paperspace_session"]
+  ua_any: []
+- id: coreweave
+  label: "AI/ML: CoreWeave"
+  weight: 85
+  uri_substr: ["/api/v1/", "/namespaces/", "/pods/"]
+  header_any: ["x-coreweave-"]
+  cookie_any: []
+  ua_any: []
+- id: cnvrg-core-ml
+  label: "AI/ML: Cnvrg Core ML"
+  weight: 85
+  uri_substr: ["/api/v1/", "/projects/", "/experiments/"]
+  header_any: []
+  cookie_any: ["_cnvrg_session"]
+  ua_any: []
+- id: neural-magic
+  label: "AI/ML: Neural Magic"
+  weight: 85
+  uri_substr: ["/api/", "/models/", "/deployments/"]
+  header_any: []
+  cookie_any: ["nm_session"]
+  ua_any: []
+- id: gradient-notebooks
+  label: "AI/ML: Gradient Notebooks"
+  weight: 85
+  uri_substr: ["/api/notebooks/", "/instances/"]
+  header_any: []
+  cookie_any: ["gradient_session"]
+  ua_any: []
+- id: deepnote
+  label: "AI/ML: Deepnote"
+  weight: 90
+  uri_substr: ["/api/", "/projects/", "/notebooks/"]
+  header_any: []
+  cookie_any: ["deepnote_session"]
+  ua_any: []
+- id: hex
+  label: "AI/ML: Hex"
+  weight: 85
+  uri_substr: ["/api/v1/", "/projects/", "/workspaces/"]
+  header_any: []
+  cookie_any: ["hex_session"]
+  ua_any: []
+- id: observable
+  label: "AI/ML: Observable"
+  weight: 85
+  uri_substr: ["/api/", "/document/", "/collection/"]
+  header_any: []
+  cookie_any: ["observable_session"]
+  ua_any: []
+- id: neptune-ml
+  label: "AI/ML: Neptune ML"
+  weight: 85
+  uri_substr: ["/api/leaderboard/", "/api/runs/"]
+  header_any: []
+  cookie_any: ["neptune_session"]
+  ua_any: []
 - id: kubernetes-api
   label: "K8s: Kubernetes API Server"
   weight: 95

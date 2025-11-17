@@ -25,6 +25,6 @@ USE_LLM=1 ./run.sh
 
 ## Env knobs
 - `SOURCES_WAPPALYZER`, `SOURCES_NUCLEI`, `SOURCES_WHATWEB` — repo or codeload zip URLs
-- `MAX_RULES` — cap merged rules (default 5000)
-- `RULES_PATH` — force a specific rules file (e.g., `/app/rules.yaml` fallback)
-- `OLLAMA_HOST_PORT` — change host port if 11434 is in use
+- `MAX_RULES` - cap merged rules (default 5000)
+- `RULES_PATH` - force a specific rules file (e.g., `/app/rules.yaml` fallback)
+- `OLLAMA_HOST_PORT` - change host port if 11434 is in use

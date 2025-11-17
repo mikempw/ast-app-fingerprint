@@ -4,7 +4,7 @@ services:
     container_name: ast-rules-updater
     command: ["python","fetch_rules.py"]
     environment:
-      SOURCES_WAPPALYZER: "${SOURCES_WAPPALYZER:-https://github.com/AliasIO/wappalyzer.git}"
+      SOURCES_WAPPALYZER: "${SOURCES_WAPPALYZER:-https://github.com/s0md3v/wappalyzer-next}"
       SOURCES_NUCLEI: "${SOURCES_NUCLEI:-https://github.com/projectdiscovery/nuclei-templates.git}"
       SOURCES_WHATWEB: "${SOURCES_WHATWEB:-https://github.com/urbanadventurer/WhatWeb.git}"
       MAX_RULES: "${MAX_RULES:-5000}"

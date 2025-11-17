@@ -18,7 +18,7 @@ def run(cmd, cwd=None):
 
 def default_branch_for(owner_repo: str) -> str:
     m = owner_repo.lower()
-    if m in ["aliasio/wappalyzer"]:
+    if m in ["s0md3v/wappalyzer"]:
         return "main"
     if m in ["urbanadventurer/whatweb"]:
         return "master"

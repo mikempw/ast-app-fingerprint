@@ -1,3 +1,1733 @@
+- id: kubernetes-api
+  label: "K8s: Kubernetes API Server"
+  weight: 95
+  uri_substr: ["/api/v1", "/apis/", "/healthz"]
+  header_any: []
+  cookie_any: []
+  ua_any: ["kubectl"]
+- id: kubernetes-dashboard
+  label: "K8s: Kubernetes Dashboard"
+  weight: 95
+  uri_substr: ["/api/v1/namespace", "/api/v1/pod"]
+  header_any: []
+  cookie_any: ["kubernetes-dashboard-csrf"]
+  ua_any: []
+- id: rancher
+  label: "K8s: Rancher"
+  weight: 95
+  uri_substr: ["/v3/", "/v3/clusters"]
+  header_any: ["x-api-cattle-auth"]
+  cookie_any: ["r_sess"]
+  ua_any: []
+- id: openshift
+  label: "K8s: Red Hat OpenShift"
+  weight: 95
+  uri_substr: ["/apis/route.openshift.io", "/oapi/v1"]
+  header_any: []
+  cookie_any: ["openshift-session-token"]
+  ua_any: []
+- id: argocd
+  label: "K8s: ArgoCD"
+  weight: 95
+  uri_substr: ["/api/v1/applications", "/api/v1/projects"]
+  header_any: []
+  cookie_any: ["argocd.token"]
+  ua_any: []
+- id: flux
+  label: "K8s: Flux"
+  weight: 85
+  uri_substr: ["/v1/namespaces", "/api/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: helm-tiller
+  label: "K8s: Helm Tiller"
+  weight: 80
+  uri_substr: []
+  header_any: []
+  cookie_any: []
+  ua_any: ["helm"]
+- id: istio-pilot
+  label: "K8s: Istio Pilot"
+  weight: 90
+  uri_substr: ["/debug/", "/metrics"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: istio-envoy
+  label: "K8s: Istio Envoy Proxy"
+  weight: 90
+  uri_substr: ["/stats/prometheus", "/server_info"]
+  header_any: ["server:.*envoy", "x-envoy-"]
+  cookie_any: []
+  ua_any: []
+- id: linkerd
+  label: "K8s: Linkerd"
+  weight: 90
+  uri_substr: ["/api/tap", "/api/stat"]
+  header_any: ["l5d-"]
+  cookie_any: []
+  ua_any: []
+- id: consul-connect
+  label: "K8s: Consul Connect"
+  weight: 85
+  uri_substr: ["/v1/connect/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: kuma
+  label: "K8s: Kuma Service Mesh"
+  weight: 85
+  uri_substr: ["/meshes", "/dataplanes"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: traefik
+  label: "K8s: Traefik"
+  weight: 90
+  uri_substr: ["/api/http/routers", "/api/overview"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: nginx-ingress
+  label: "K8s: NGINX Ingress Controller"
+  weight: 90
+  uri_substr: ["/nginx_status", "/healthz"]
+  header_any: ["server:.*nginx"]
+  cookie_any: []
+  ua_any: []
+- id: haproxy-ingress
+  label: "K8s: HAProxy Ingress"
+  weight: 85
+  uri_substr: ["/healthz", "/metrics"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: contour
+  label: "K8s: Contour Ingress"
+  weight: 85
+  uri_substr: ["/healthz", "/stats"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: ambassador
+  label: "K8s: Ambassador/Emissary"
+  weight: 85
+  uri_substr: ["/ambassador/v0/", "/edge_stack/admin/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: gloo
+  label: "K8s: Gloo Edge"
+  weight: 85
+  uri_substr: ["/apis/gloo.solo.io"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: kong-ingress
+  label: "K8s: Kong Ingress"
+  weight: 90
+  uri_substr: ["/apis/configuration.konghq.com"]
+  header_any: ["via:.*kong"]
+  cookie_any: []
+  ua_any: []
+- id: prometheus
+  label: "Monitoring: Prometheus"
+  weight: 95
+  uri_substr: ["/api/v1/query", "/api/v1/targets", "/graph"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: grafana-api
+  label: "Monitoring: Grafana"
+  weight: 95
+  uri_substr: ["/api/datasources", "/api/dashboards"]
+  header_any: ["x-grafana-org-id"]
+  cookie_any: ["grafana_session"]
+  ua_any: []
+- id: thanos
+  label: "Monitoring: Thanos"
+  weight: 90
+  uri_substr: ["/api/v1/stores", "/api/v1/blocks"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: cortex
+  label: "Monitoring: Cortex"
+  weight: 85
+  uri_substr: ["/api/v1/push", "/distributor/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: mimir
+  label: "Monitoring: Grafana Mimir"
+  weight: 85
+  uri_substr: ["/prometheus/api/v1/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: victoria-metrics
+  label: "Monitoring: VictoriaMetrics"
+  weight: 90
+  uri_substr: ["/api/v1/export", "/vmui/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: loki
+  label: "Monitoring: Grafana Loki"
+  weight: 90
+  uri_substr: ["/loki/api/v1/", "/api/prom/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: tempo
+  label: "Monitoring: Grafana Tempo"
+  weight: 85
+  uri_substr: ["/api/traces/", "/api/search"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: jaeger
+  label: "Monitoring: Jaeger"
+  weight: 95
+  uri_substr: ["/api/traces", "/api/services"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: zipkin-api
+  label: "Monitoring: Zipkin"
+  weight: 90
+  uri_substr: ["/api/v2/traces", "/api/v2/services"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: datadog-agent
+  label: "Monitoring: Datadog Agent"
+  weight: 85
+  uri_substr: ["/agent/", "/api/v1/check_run"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: new-relic
+  label: "Monitoring: New Relic"
+  weight: 85
+  uri_substr: ["/v2/applications", "/v2/servers"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: splunk
+  label: "Monitoring: Splunk"
+  weight: 90
+  uri_substr: ["/services/", "/servicesNS/"]
+  header_any: []
+  cookie_any: ["splunkd_", "splunkweb_"]
+  ua_any: []
+- id: fluentd
+  label: "Logging: Fluentd"
+  weight: 85
+  uri_substr: ["/api/plugins", "/api/config"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: fluent-bit
+  label: "Logging: Fluent Bit"
+  weight: 85
+  uri_substr: ["/api/v1/metrics", "/api/v1/uptime"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: logstash
+  label: "Logging: Logstash"
+  weight: 85
+  uri_substr: ["/_node/", "/_node/stats"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: vector
+  label: "Logging: Vector"
+  weight: 85
+  uri_substr: ["/health", "/graphql"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: harbor
+  label: "K8s: Harbor Registry"
+  weight: 95
+  uri_substr: ["/api/v2.0/", "/c/login"]
+  header_any: []
+  cookie_any: ["harbor-lang", "sid"]
+  ua_any: []
+- id: docker-registry
+  label: "K8s: Docker Registry"
+  weight: 90
+  uri_substr: ["/v2/_catalog", "/v2/"]
+  header_any: ["docker-distribution-api-version"]
+  cookie_any: []
+  ua_any: []
+- id: quay
+  label: "K8s: Quay Registry"
+  weight: 90
+  uri_substr: ["/api/v1/repository", "/api/v1/user"]
+  header_any: []
+  cookie_any: ["quay_session"]
+  ua_any: []
+- id: nexus
+  label: "K8s: Sonatype Nexus"
+  weight: 90
+  uri_substr: ["/service/rest/", "/repository/"]
+  header_any: []
+  cookie_any: ["nxsessionid"]
+  ua_any: []
+- id: artifactory
+  label: "K8s: JFrog Artifactory"
+  weight: 90
+  uri_substr: ["/artifactory/api/", "/ui/"]
+  header_any: []
+  cookie_any: ["artifactory"]
+  ua_any: []
+- id: chartmuseum
+  label: "K8s: ChartMuseum"
+  weight: 85
+  uri_substr: ["/api/charts", "/health"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: tekton
+  label: "K8s: Tekton Pipelines"
+  weight: 90
+  uri_substr: ["/apis/tekton.dev/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: jenkins-x
+  label: "K8s: Jenkins X"
+  weight: 85
+  uri_substr: ["/apis/jenkins.io/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: spinnaker
+  label: "K8s: Spinnaker"
+  weight: 90
+  uri_substr: ["/applications", "/pipelines"]
+  header_any: []
+  cookie_any: ["SESSION"]
+  ua_any: []
+- id: weave-scope
+  label: "K8s: Weave Scope"
+  weight: 85
+  uri_substr: ["/api/topology", "/api/report"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: k9s
+  label: "K8s: K9s"
+  weight: 80
+  uri_substr: []
+  header_any: []
+  cookie_any: []
+  ua_any: ["k9s"]
+- id: lens
+  label: "K8s: Lens IDE"
+  weight: 80
+  uri_substr: []
+  header_any: []
+  cookie_any: []
+  ua_any: ["lens"]
+- id: kiali
+  label: "K8s: Kiali"
+  weight: 90
+  uri_substr: ["/api/namespaces", "/api/istio/"]
+  header_any: []
+  cookie_any: ["kiali-token"]
+  ua_any: []
+- id: kubeview
+  label: "K8s: KubeView"
+  weight: 85
+  uri_substr: ["/api/namespaces", "/api/scrape"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: postgresql-pgadmin
+  label: "Database: pgAdmin"
+  weight: 95
+  uri_substr: ["/browser/", "/misc/sql"]
+  header_any: []
+  cookie_any: ["pga4_session"]
+  ua_any: []
+- id: postgresql-adminer
+  label: "Database: Adminer (PostgreSQL)"
+  weight: 90
+  uri_substr: []
+  header_any: []
+  cookie_any: ["adminer_sid", "adminer_key"]
+  ua_any: []
+- id: mongodb-compass
+  label: "Database: MongoDB Compass"
+  weight: 85
+  uri_substr: []
+  header_any: []
+  cookie_any: ["mongodb_compass"]
+  ua_any: []
+- id: mongodb-express
+  label: "Database: Mongo Express"
+  weight: 90
+  uri_substr: ["/db/", "/collection/"]
+  header_any: []
+  cookie_any: ["mongo-express"]
+  ua_any: []
+- id: redis-insight
+  label: "Database: RedisInsight"
+  weight: 90
+  uri_substr: ["/api/databases", "/api/instance"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: redis-commander
+  label: "Database: Redis Commander"
+  weight: 85
+  uri_substr: ["/apiv2/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: elasticsearch-kibana
+  label: "Database: Kibana (Elasticsearch)"
+  weight: 95
+  uri_substr: ["/api/saved_objects", "/api/index_patterns"]
+  header_any: ["kbn-name", "kbn-version"]
+  cookie_any: ["sid"]
+  ua_any: []
+- id: elasticsearch-api
+  label: "Database: Elasticsearch"
+  weight: 95
+  uri_substr: ["/_cat/", "/_cluster/", "/_search"]
+  header_any: ["x-elastic-product"]
+  cookie_any: []
+  ua_any: []
+- id: opensearch
+  label: "Database: OpenSearch"
+  weight: 90
+  uri_substr: ["/_cluster/", "/_cat/", "/_plugins/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: opensearch-dashboards
+  label: "Database: OpenSearch Dashboards"
+  weight: 90
+  uri_substr: ["/api/saved_objects"]
+  header_any: ["osd-name", "osd-version"]
+  cookie_any: []
+  ua_any: []
+- id: cassandra-reaper
+  label: "Database: Cassandra Reaper"
+  weight: 85
+  uri_substr: ["/cluster", "/repair_run"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: couchbase-web-console
+  label: "Database: Couchbase Web Console"
+  weight: 90
+  uri_substr: ["/pools/", "/buckets/"]
+  header_any: []
+  cookie_any: ["ui-auth-"]
+  ua_any: []
+- id: influxdb
+  label: "Database: InfluxDB"
+  weight: 95
+  uri_substr: ["/api/v2/", "/query"]
+  header_any: []
+  cookie_any: ["session"]
+  ua_any: []
+- id: influxdb-chronograf
+  label: "Database: Chronograf (InfluxDB)"
+  weight: 90
+  uri_substr: ["/chronograf/v1/"]
+  header_any: []
+  cookie_any: ["chronograf-v1"]
+  ua_any: []
+- id: clickhouse
+  label: "Database: ClickHouse"
+  weight: 95
+  uri_substr: ["/play", "/?query="]
+  header_any: ["x-clickhouse-"]
+  cookie_any: []
+  ua_any: []
+- id: clickhouse-tabix
+  label: "Database: Tabix (ClickHouse)"
+  weight: 85
+  uri_substr: []
+  header_any: []
+  cookie_any: ["tabix"]
+  ua_any: []
+- id: mysql-phpmyadmin
+  label: "Database: phpMyAdmin"
+  weight: 95
+  uri_substr: ["/phpmyadmin/", "/sql.php"]
+  header_any: []
+  cookie_any: ["phpmyadmin", "pma_"]
+  ua_any: []
+- id: mysql-workbench
+  label: "Database: MySQL Workbench"
+  weight: 80
+  uri_substr: []
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: mariadb
+  label: "Database: MariaDB"
+  weight: 90
+  uri_substr: []
+  header_any: ["server:.*mariadb"]
+  cookie_any: []
+  ua_any: []
+- id: percona-monitoring
+  label: "Database: Percona Monitoring"
+  weight: 85
+  uri_substr: ["/graph/", "/prometheus/"]
+  header_any: []
+  cookie_any: ["grafana_session"]
+  ua_any: []
+- id: oracle-enterprise-manager
+  label: "Database: Oracle Enterprise Manager"
+  weight: 90
+  uri_substr: ["/em/", "/emd/"]
+  header_any: []
+  cookie_any: ["oem_"]
+  ua_any: []
+- id: oracle-sql-developer
+  label: "Database: Oracle SQL Developer Web"
+  weight: 85
+  uri_substr: ["/ords/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: neo4j-browser
+  label: "Database: Neo4j Browser"
+  weight: 95
+  uri_substr: ["/db/data/", "/browser/"]
+  header_any: []
+  cookie_any: ["neo4j.connection"]
+  ua_any: []
+- id: arangodb
+  label: "Database: ArangoDB"
+  weight: 95
+  uri_substr: ["/_api/", "/_db/"]
+  header_any: ["server:.*arangodb"]
+  cookie_any: []
+  ua_any: []
+- id: orientdb
+  label: "Database: OrientDB"
+  weight: 90
+  uri_substr: ["/studio/", "/function/"]
+  header_any: []
+  cookie_any: ["orientdb_session"]
+  ua_any: []
+- id: rethinkdb
+  label: "Database: RethinkDB"
+  weight: 90
+  uri_substr: ["/#tables", "/#dataexplorer"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: apache-druid
+  label: "Database: Apache Druid"
+  weight: 90
+  uri_substr: ["/druid/coordinator/", "/druid/indexer/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: apache-pinot
+  label: "Database: Apache Pinot"
+  weight: 85
+  uri_substr: ["/tables", "/schemas"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: questdb
+  label: "Database: QuestDB"
+  weight: 90
+  uri_substr: ["/exec", "/imp"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: vitess
+  label: "Database: Vitess"
+  weight: 85
+  uri_substr: ["/api/", "/debug/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: cockroachdb
+  label: "Database: CockroachDB"
+  weight: 90
+  uri_substr: ["/_admin/v1/", "/_status/"]
+  header_any: []
+  cookie_any: ["session"]
+  ua_any: []
+- id: yugabytedb
+  label: "Database: YugabyteDB"
+  weight: 85
+  uri_substr: ["/api/v1/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: fauna
+  label: "Database: Fauna"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-fauna-"]
+  cookie_any: []
+  ua_any: []
+- id: dynamodb
+  label: "Database: Amazon DynamoDB"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-amz-target:.*dynamodb"]
+  cookie_any: []
+  ua_any: []
+- id: firestore
+  label: "Database: Google Firestore"
+  weight: 85
+  uri_substr: ["/v1/projects", "/v1beta1/projects"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: cosmos-db
+  label: "Database: Azure Cosmos DB"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-ms-documentdb-"]
+  cookie_any: []
+  ua_any: []
+- id: scylladb
+  label: "Database: ScyllaDB"
+  weight: 85
+  uri_substr: ["/storage_service/", "/column_family/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: memcached
+  label: "Database: Memcached"
+  weight: 80
+  uri_substr: []
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: hazelcast
+  label: "Database: Hazelcast"
+  weight: 85
+  uri_substr: ["/hazelcast/rest/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: apache-ignite
+  label: "Database: Apache Ignite"
+  weight: 85
+  uri_substr: ["/ignite?"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: etcd
+  label: "Database: etcd"
+  weight: 90
+  uri_substr: ["/v3/", "/version"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: consul
+  label: "Database: HashiCorp Consul"
+  weight: 90
+  uri_substr: ["/v1/agent/", "/v1/catalog/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: zookeeper
+  label: "Database: Apache ZooKeeper"
+  weight: 80
+  uri_substr: ["/commands/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: aerospike
+  label: "Database: Aerospike"
+  weight: 85
+  uri_substr: []
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: riak
+  label: "Database: Riak"
+  weight: 85
+  uri_substr: ["/riak/", "/buckets/"]
+  header_any: ["server:.*mochiweb"]
+  cookie_any: []
+  ua_any: []
+- id: datomic
+  label: "Database: Datomic"
+  weight: 80
+  uri_substr: []
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: voltdb
+  label: "Database: VoltDB"
+  weight: 85
+  uri_substr: ["/api/1.0/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: memsql-singlestore
+  label: "Database: SingleStore (MemSQL)"
+  weight: 85
+  uri_substr: ["/api/v1/", "/api/v2/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: sap-netweaver
+  label: "Enterprise: SAP NetWeaver"
+  weight: 95
+  uri_substr: ["/sap/bc/", "/sap/public/"]
+  header_any: ["sap-system", "sap-passport"]
+  cookie_any: ["sap-usercontext", "saplb_"]
+  ua_any: []
+- id: sap-hana
+  label: "Enterprise: SAP HANA"
+  weight: 95
+  uri_substr: []
+  header_any: ["x-sap-request-id"]
+  cookie_any: []
+  ua_any: []
+- id: sap-fiori
+  label: "Enterprise: SAP Fiori"
+  weight: 90
+  uri_substr: ["/sap/bc/ui5_ui5/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: oracle-ebs
+  label: "Enterprise: Oracle E-Business Suite"
+  weight: 95
+  uri_substr: ["/OA_HTML/", "/oa_servlets/"]
+  header_any: []
+  cookie_any: ["oam.flash.rendermap.cookie"]
+  ua_any: []
+- id: oracle-peoplesoft
+  label: "Enterprise: Oracle PeopleSoft"
+  weight: 95
+  uri_substr: ["/psp/", "/psc/"]
+  header_any: []
+  cookie_any: ["pstoken", "signonsso"]
+  ua_any: []
+- id: oracle-siebel
+  label: "Enterprise: Oracle Siebel"
+  weight: 90
+  uri_substr: ["/siebel/app/", "/_ns.z"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: oracle-apex
+  label: "Enterprise: Oracle APEX"
+  weight: 90
+  uri_substr: ["/apex/", "/ords/"]
+  header_any: []
+  cookie_any: ["ords_"]
+  ua_any: []
+- id: salesforce-api
+  label: "Enterprise: Salesforce API"
+  weight: 95
+  uri_substr: ["/services/data/", "/services/apexrest/"]
+  header_any: ["sforce-limit-info"]
+  cookie_any: []
+  ua_any: []
+- id: servicenow
+  label: "Enterprise: ServiceNow"
+  weight: 95
+  uri_substr: ["/api/now/", "/xmlhttp.do"]
+  header_any: ["x-is-logged-in", "x-transaction-id"]
+  cookie_any: ["glide_user_route", "glide_session_store"]
+  ua_any: []
+- id: workday
+  label: "Enterprise: Workday"
+  weight: 90
+  uri_substr: ["/ccx/api/", "/ccx/service/"]
+  header_any: []
+  cookie_any: ["workday_session", "wd-browser-id"]
+  ua_any: []
+- id: microsoft-dynamics-365
+  label: "Enterprise: Microsoft Dynamics 365"
+  weight: 90
+  uri_substr: ["/api/data/v9.0", "/api/data/v9.1", "/api/data/v9.2"]
+  header_any: ["odata-version"]
+  cookie_any: ["dynamics_", "orgid"]
+  ua_any: []
+- id: microsoft-dynamics-crm
+  label: "Enterprise: Microsoft Dynamics CRM"
+  weight: 90
+  uri_substr: ["/xrmservices/", "/_grid/"]
+  header_any: []
+  cookie_any: ["ms-crm-"]
+  ua_any: []
+- id: microsoft-dynamics-ax
+  label: "Enterprise: Microsoft Dynamics AX"
+  weight: 85
+  uri_substr: ["/dynamicsax/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: microsoft-dynamics-nav
+  label: "Enterprise: Microsoft Dynamics NAV"
+  weight: 85
+  uri_substr: ["/dynamicsnav/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: sap-business-one
+  label: "Enterprise: SAP Business One"
+  weight: 90
+  uri_substr: ["/b1s/v1/", "/b1s/v2/"]
+  header_any: []
+  cookie_any: ["b1session"]
+  ua_any: []
+- id: sap-successfactors
+  label: "Enterprise: SAP SuccessFactors"
+  weight: 90
+  uri_substr: ["/odata/v2/", "/learning/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: sap-ariba
+  label: "Enterprise: SAP Ariba"
+  weight: 90
+  uri_substr: ["/api/", "/sourcing/"]
+  header_any: []
+  cookie_any: ["ariba_"]
+  ua_any: []
+- id: sap-concur
+  label: "Enterprise: SAP Concur"
+  weight: 90
+  uri_substr: ["/api/v3.0/", "/api/v4.0/"]
+  header_any: []
+  cookie_any: ["concur_"]
+  ua_any: []
+- id: infor-cloudsuite
+  label: "Enterprise: Infor CloudSuite"
+  weight: 85
+  uri_substr: ["/OAGIS/", "/ION/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: epicor-erp
+  label: "Enterprise: Epicor ERP"
+  weight: 85
+  uri_substr: ["/api/v1/", "/api/v2/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: sage-intacct
+  label: "Enterprise: Sage Intacct"
+  weight: 85
+  uri_substr: ["/ia/xml/", "/ia/api/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: netsuite-api
+  label: "Enterprise: NetSuite API"
+  weight: 90
+  uri_substr: ["/app/site/hosting/scriptlet.nl", "/rest/platform/"]
+  header_any: []
+  cookie_any: ["ns_ver"]
+  ua_any: []
+- id: acumatica
+  label: "Enterprise: Acumatica"
+  weight: 85
+  uri_substr: ["/entity/", "/api/"]
+  header_any: []
+  cookie_any: ["usernames", ".acumatica"]
+  ua_any: []
+- id: ifs-applications
+  label: "Enterprise: IFS Applications"
+  weight: 85
+  uri_substr: ["/main/ifsapplications/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: deltek-costpoint
+  label: "Enterprise: Deltek Costpoint"
+  weight: 85
+  uri_substr: ["/cpweb/", "/costpoint/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: unit4-erp
+  label: "Enterprise: Unit4 ERP"
+  weight: 85
+  uri_substr: ["/services/", "/api/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: exact-globe
+  label: "Enterprise: Exact Globe"
+  weight: 85
+  uri_substr: ["/docs/api/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: microsoft-project-server
+  label: "Enterprise: Microsoft Project Server"
+  weight: 85
+  uri_substr: ["/_api/projectserver"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: atlassian-jira
+  label: "Enterprise: Atlassian Jira"
+  weight: 95
+  uri_substr: ["/rest/api/2/", "/rest/api/3/"]
+  header_any: ["x-ausername", "x-arequestid"]
+  cookie_any: ["atlassian.xsrf.token", "jira.user.id"]
+  ua_any: []
+- id: atlassian-confluence-api
+  label: "Enterprise: Atlassian Confluence"
+  weight: 95
+  uri_substr: ["/rest/api/content", "/wiki/rest/api/"]
+  header_any: ["x-confluence-request-time"]
+  cookie_any: ["confluence.browse.space.cookie"]
+  ua_any: []
+- id: atlassian-bitbucket
+  label: "Enterprise: Atlassian Bitbucket"
+  weight: 90
+  uri_substr: ["/rest/api/1.0/", "/rest/api/latest/"]
+  header_any: ["x-arequestid"]
+  cookie_any: ["bitbucket.user"]
+  ua_any: []
+- id: gitlab-api
+  label: "Enterprise: GitLab"
+  weight: 95
+  uri_substr: ["/api/v4/"]
+  header_any: []
+  cookie_any: ["_gitlab_session"]
+  ua_any: []
+- id: github-enterprise
+  label: "Enterprise: GitHub Enterprise"
+  weight: 90
+  uri_substr: ["/api/v3/"]
+  header_any: ["x-github-enterprise-version"]
+  cookie_any: ["_gh_sess"]
+  ua_any: []
+- id: azure-devops
+  label: "Enterprise: Azure DevOps"
+  weight: 90
+  uri_substr: ["/_apis/", "/_api/"]
+  header_any: ["x-vss-", "x-tfs-"]
+  cookie_any: ["vsts_", "tfs_"]
+  ua_any: []
+- id: slack-api
+  label: "Enterprise: Slack"
+  weight: 90
+  uri_substr: ["/api/", "/slack/"]
+  header_any: []
+  cookie_any: ["d", "d-s"]
+  ua_any: []
+- id: microsoft-teams
+  label: "Enterprise: Microsoft Teams"
+  weight: 85
+  uri_substr: ["/api/mt/", "/api/csa/"]
+  header_any: []
+  cookie_any: ["teams-"]
+  ua_any: []
+- id: zoom-api
+  label: "Enterprise: Zoom"
+  weight: 85
+  uri_substr: ["/v2/users", "/v2/meetings"]
+  header_any: []
+  cookie_any: ["_zm_"]
+  ua_any: []
+- id: webex
+  label: "Enterprise: Cisco Webex"
+  weight: 85
+  uri_substr: ["/v1/"]
+  header_any: ["trackingid"]
+  cookie_any: []
+  ua_any: []
+- id: ringcentral
+  label: "Enterprise: RingCentral"
+  weight: 85
+  uri_substr: ["/restapi/v1.0/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: zendesk-api
+  label: "Enterprise: Zendesk"
+  weight: 90
+  uri_substr: ["/api/v2/"]
+  header_any: ["x-zendesk-user-id"]
+  cookie_any: ["_zendesk_session"]
+  ua_any: []
+- id: freshdesk
+  label: "Enterprise: Freshdesk"
+  weight: 90
+  uri_substr: ["/api/v2/"]
+  header_any: []
+  cookie_any: ["_freshdesk_session"]
+  ua_any: []
+- id: freshservice
+  label: "Enterprise: Freshservice"
+  weight: 85
+  uri_substr: ["/api/v2/"]
+  header_any: []
+  cookie_any: ["_freshservice_session"]
+  ua_any: []
+- id: jira-service-desk
+  label: "Enterprise: Jira Service Desk"
+  weight: 90
+  uri_substr: ["/rest/servicedeskapi/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: docusign
+  label: "Enterprise: DocuSign"
+  weight: 90
+  uri_substr: ["/restapi/v2/", "/restapi/v2.1/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: adobe-sign
+  label: "Enterprise: Adobe Sign"
+  weight: 85
+  uri_substr: ["/api/rest/v6/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: pandadoc
+  label: "Enterprise: PandaDoc"
+  weight: 85
+  uri_substr: ["/public/v1/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: box-api
+  label: "Enterprise: Box"
+  weight: 90
+  uri_substr: ["/2.0/folders", "/2.0/files"]
+  header_any: ["box-request-id"]
+  cookie_any: []
+  ua_any: []
+- id: dropbox-api
+  label: "Enterprise: Dropbox"
+  weight: 90
+  uri_substr: ["/2/", "/2/files/"]
+  header_any: ["x-dropbox-request-id"]
+  cookie_any: []
+  ua_any: []
+- id: google-workspace
+  label: "Enterprise: Google Workspace"
+  weight: 85
+  uri_substr: ["/admin/", "/drive/v3/"]
+  header_any: ["x-goog-api-client"]
+  cookie_any: []
+  ua_any: []
+- id: microsoft-365
+  label: "Enterprise: Microsoft 365"
+  weight: 85
+  uri_substr: ["/v1.0/", "/beta/"]
+  header_any: ["client-request-id"]
+  cookie_any: []
+  ua_any: []
+- id: minio
+  label: "Storage: MinIO"
+  weight: 95
+  uri_substr: []
+  header_any: ["server:.*minio", "x-minio-deployment-id", "x-minio-request-id"]
+  cookie_any: []
+  ua_any: []
+- id: aws-s3
+  label: "Storage: Amazon S3"
+  weight: 90
+  uri_substr: []
+  header_any: ["x-amz-id-2", "x-amz-request-id", "x-amz-bucket-region"]
+  cookie_any: []
+  ua_any: []
+- id: ceph-radosgw
+  label: "Storage: Ceph RADOS Gateway"
+  weight: 90
+  uri_substr: ["/admin/usage", "/admin/bucket"]
+  header_any: ["x-rgw-", "server:.*ceph"]
+  cookie_any: []
+  ua_any: []
+- id: seaweedfs
+  label: "Storage: SeaweedFS"
+  weight: 90
+  uri_substr: ["/dir/status", "/cluster/status"]
+  header_any: ["server:.*seaweedfs"]
+  cookie_any: []
+  ua_any: []
+- id: garage
+  label: "Storage: Garage"
+  weight: 85
+  uri_substr: []
+  header_any: ["server:.*garage"]
+  cookie_any: []
+  ua_any: []
+- id: rook-ceph
+  label: "Storage: Rook Ceph"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-ceph-", "server:.*ceph"]
+  cookie_any: []
+  ua_any: []
+- id: openio
+  label: "Storage: OpenIO"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-openio-"]
+  cookie_any: []
+  ua_any: []
+- id: cloudian
+  label: "Storage: Cloudian HyperStore"
+  weight: 85
+  uri_substr: []
+  header_any: ["server:.*cloudian"]
+  cookie_any: []
+  ua_any: []
+- id: scality
+  label: "Storage: Scality RING"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-scal-", "server:.*scality"]
+  cookie_any: []
+  ua_any: []
+- id: wasabi
+  label: "Storage: Wasabi"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-wasabi-"]
+  cookie_any: []
+  ua_any: []
+- id: backblaze-b2
+  label: "Storage: Backblaze B2"
+  weight: 90
+  uri_substr: ["/b2api/v2", "/file/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: storj
+  label: "Storage: Storj"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-storj-"]
+  cookie_any: []
+  ua_any: []
+- id: filebase
+  label: "Storage: Filebase"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-filebase-"]
+  cookie_any: []
+  ua_any: []
+- id: digitalocean-spaces
+  label: "Storage: DigitalOcean Spaces"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-amz-id-2", "server:.*nginx"]
+  cookie_any: []
+  ua_any: []
+- id: linode-object-storage
+  label: "Storage: Linode Object Storage"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-amz-request-id", "x-rgw-"]
+  cookie_any: []
+  ua_any: []
+- id: oracle-object-storage
+  label: "Storage: Oracle Object Storage"
+  weight: 85
+  uri_substr: ["/n/", "/b/", "/o/"]
+  header_any: ["opc-request-id", "opc-client-request-id"]
+  cookie_any: []
+  ua_any: []
+- id: ibm-cloud-object-storage
+  label: "Storage: IBM Cloud Object Storage"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-clv-s3-version", "ibm-sse-"]
+  cookie_any: []
+  ua_any: []
+- id: azure-blob-storage
+  label: "Storage: Azure Blob Storage"
+  weight: 90
+  uri_substr: []
+  header_any: ["x-ms-blob-", "x-ms-request-id", "x-ms-version"]
+  cookie_any: []
+  ua_any: []
+- id: google-cloud-storage
+  label: "Storage: Google Cloud Storage"
+  weight: 90
+  uri_substr: []
+  header_any: ["x-goog-storage-class", "x-goog-hash", "x-guploader-uploadid"]
+  cookie_any: []
+  ua_any: []
+- id: alibaba-oss
+  label: "Storage: Alibaba Cloud OSS"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-oss-", "server:.*aliyunoss"]
+  cookie_any: []
+  ua_any: []
+- id: tencent-cos
+  label: "Storage: Tencent Cloud COS"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-cos-"]
+  cookie_any: []
+  ua_any: []
+- id: huawei-obs
+  label: "Storage: Huawei OBS"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-obs-"]
+  cookie_any: []
+  ua_any: []
+- id: ovh-object-storage
+  label: "Storage: OVH Object Storage"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-openstack-", "x-trans-id"]
+  cookie_any: []
+  ua_any: []
+- id: swift-openstack
+  label: "Storage: OpenStack Swift"
+  weight: 90
+  uri_substr: ["/v1/auth", "/v1/account"]
+  header_any: ["x-openstack-request-id", "x-trans-id"]
+  cookie_any: []
+  ua_any: []
+- id: rclone-serve
+  label: "Storage: Rclone Serve"
+  weight: 85
+  uri_substr: []
+  header_any: ["server:.*rclone"]
+  cookie_any: []
+  ua_any: []
+- id: nextcloud
+  label: "Storage: Nextcloud"
+  weight: 90
+  uri_substr: ["/remote.php/dav", "/ocs/v1.php", "/ocs/v2.php"]
+  header_any: []
+  cookie_any: ["__host-nc_samesitest rict", "oc_sessionpassphrase"]
+  ua_any: []
+- id: owncloud
+  label: "Storage: ownCloud"
+  weight: 90
+  uri_substr: ["/remote.php/webdav", "/ocs/"]
+  header_any: []
+  cookie_any: ["oc_sessionpassphrase", "owncloud"]
+  ua_any: []
+- id: seafile
+  label: "Storage: Seafile"
+  weight: 90
+  uri_substr: ["/api2/", "/seafhttp/"]
+  header_any: []
+  cookie_any: ["seahub_sessionid", "csrftoken"]
+  ua_any: []
+- id: pydio
+  label: "Storage: Pydio Cells"
+  weight: 85
+  uri_substr: ["/a/frontend", "/a/meta"]
+  header_any: []
+  cookie_any: ["pydio_session"]
+  ua_any: []
+- id: filerun
+  label: "Storage: FileRun"
+  weight: 85
+  uri_substr: []
+  header_any: []
+  cookie_any: ["filerun"]
+  ua_any: []
+- id: syncthing
+  label: "Storage: Syncthing"
+  weight: 90
+  uri_substr: ["/rest/", "/meta.js"]
+  header_any: []
+  cookie_any: ["sessionid-"]
+  ua_any: []
+- id: resilio-sync
+  label: "Storage: Resilio Sync"
+  weight: 85
+  uri_substr: ["/api", "/gui"]
+  header_any: []
+  cookie_any: ["gui_session"]
+  ua_any: []
+- id: filezilla-server
+  label: "Storage: FileZilla Server"
+  weight: 80
+  uri_substr: []
+  header_any: ["server:.*filezilla"]
+  cookie_any: []
+  ua_any: []
+- id: glusterfs
+  label: "Storage: GlusterFS"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-gluster-"]
+  cookie_any: []
+  ua_any: []
+- id: lustre
+  label: "Storage: Lustre"
+  weight: 80
+  uri_substr: []
+  header_any: ["x-lustre-"]
+  cookie_any: []
+  ua_any: []
+- id: beegfs
+  label: "Storage: BeeGFS"
+  weight: 80
+  uri_substr: []
+  header_any: ["x-beegfs-"]
+  cookie_any: []
+  ua_any: []
+- id: moosefs
+  label: "Storage: MooseFS"
+  weight: 80
+  uri_substr: ["/mfs.cgi"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: lizardfs
+  label: "Storage: LizardFS"
+  weight: 80
+  uri_substr: []
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: juicefs
+  label: "Storage: JuiceFS"
+  weight: 85
+  uri_substr: []
+  header_any: ["x-juicefs-"]
+  cookie_any: []
+  ua_any: []
+- id: alluxio
+  label: "Storage: Alluxio"
+  weight: 85
+  uri_substr: ["/api/v1/master", "/api/v1/worker"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: hdfs-webhdfs
+  label: "Storage: HDFS WebHDFS"
+  weight: 90
+  uri_substr: ["/webhdfs/v1"]
+  header_any: []
+  cookie_any: ["hadoop.auth"]
+  ua_any: []
+- id: apache-ozone
+  label: "Storage: Apache Ozone"
+  weight: 85
+  uri_substr: ["/api/v1/volumes", "/api/v1/buckets"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: netapp-ontap
+  label: "Storage: NetApp ONTAP"
+  weight: 85
+  uri_substr: ["/api/storage", "/api/cluster"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: dell-emc-isilon
+  label: "Storage: Dell EMC Isilon"
+  weight: 85
+  uri_substr: ["/platform/", "/namespace/"]
+  header_any: []
+  cookie_any: ["isisessid"]
+  ua_any: []
+- id: pure-storage
+  label: "Storage: Pure Storage"
+  weight: 85
+  uri_substr: ["/api/", "/api/1.19/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: qumulo
+  label: "Storage: Qumulo"
+  weight: 85
+  uri_substr: ["/v1/", "/v2/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: vast-data
+  label: "Storage: VAST Data"
+  weight: 85
+  uri_substr: ["/api/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: weka-io
+  label: "Storage: WekaIO"
+  weight: 85
+  uri_substr: ["/api/v1/", "/api/v2/"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: cleversafe
+  label: "Storage: IBM Cleversafe"
+  weight: 80
+  uri_substr: []
+  header_any: ["x-cleversafe-"]
+  cookie_any: []
+  ua_any: []
+- id: nvidia-triton
+  label: "AI/ML: NVIDIA Triton Inference Server"
+  weight: 90
+  uri_substr: ["/v2/health", "/v2/models", "/metrics/prometheus"]
+  header_any: ["server:.*triton", "x-triton-"]
+  cookie_any: []
+  ua_any: []
+- id: mlflow
+  label: "AI/ML: MLflow"
+  weight: 90
+  uri_substr: ["/api/2.0/mlflow", "/ajax-api/2.0/mlflow"]
+  header_any: ["x-mlflow-"]
+  cookie_any: ["mlflow-session"]
+  ua_any: []
+- id: kubeflow
+  label: "AI/ML: Kubeflow"
+  weight: 90
+  uri_substr: ["/pipeline", "/jupyter", "/katib", "/kfp"]
+  header_any: ["x-kubeflow-userid", "kubeflow-userid"]
+  cookie_any: ["authservice_session"]
+  ua_any: []
+- id: tensorboard
+  label: "AI/ML: TensorBoard"
+  weight: 85
+  uri_substr: ["/data/plugin", "/experiment", "/data/logdir"]
+  header_any: ["x-tensorboard"]
+  cookie_any: []
+  ua_any: []
+- id: ray-serve
+  label: "AI/ML: Ray Serve"
+  weight: 90
+  uri_substr: ["/api/serve", "/-/routes", "/-/healthz"]
+  header_any: ["x-ray-", "server:.*ray"]
+  cookie_any: []
+  ua_any: []
+- id: seldon-core
+  label: "AI/ML: Seldon Core"
+  weight: 90
+  uri_substr: ["/api/v1.0/predictions", "/seldon"]
+  header_any: ["seldon-puid", "x-seldon-"]
+  cookie_any: []
+  ua_any: []
+- id: kserve
+  label: "AI/ML: KServe"
+  weight: 90
+  uri_substr: ["/v1/models", "/v2/models", "/v2/health/live"]
+  header_any: ["x-kserve-"]
+  cookie_any: []
+  ua_any: []
+- id: wandb
+  label: "AI/ML: Weights & Biases"
+  weight: 85
+  uri_substr: ["/graphql", "/api/v1/runs"]
+  header_any: []
+  cookie_any: ["wandb_session", "wandb-"]
+  ua_any: []
+- id: huggingface-inference
+  label: "AI/ML: Hugging Face Inference"
+  weight: 85
+  uri_substr: ["/models", "/api/models"]
+  header_any: ["x-compute-type", "x-compute-time"]
+  cookie_any: []
+  ua_any: []
+- id: jupyter-hub
+  label: "AI/ML: JupyterHub"
+  weight: 90
+  uri_substr: ["/hub/api", "/hub/login", "/user/"]
+  header_any: []
+  cookie_any: ["jupyterhub-", "jupyterhub-hub-login", "jupyterhub-session-id"]
+  ua_any: []
+- id: jupyter-notebook
+  label: "AI/ML: Jupyter Notebook"
+  weight: 85
+  uri_substr: ["/api/contents", "/api/kernels", "/api/sessions"]
+  header_any: []
+  cookie_any: ["_xsrf", "username-"]
+  ua_any: []
+- id: apache-airflow
+  label: "AI/ML: Apache Airflow"
+  weight: 90
+  uri_substr: ["/api/v1/dags", "/api/v1/pools", "/health"]
+  header_any: []
+  cookie_any: ["session", "csrf_token"]
+  ua_any: []
+- id: metaflow
+  label: "AI/ML: Metaflow"
+  weight: 85
+  uri_substr: ["/api/flows", "/api/runs"]
+  header_any: ["x-metaflow-"]
+  cookie_any: []
+  ua_any: []
+- id: bentoml
+  label: "AI/ML: BentoML"
+  weight: 85
+  uri_substr: ["/livez", "/readyz", "/metrics"]
+  header_any: ["server:.*bentoml", "x-bentoml-"]
+  cookie_any: []
+  ua_any: []
+- id: tensorflow-serving
+  label: "AI/ML: TensorFlow Serving"
+  weight: 90
+  uri_substr: ["/v1/models", "/v1/models/.*/metadata"]
+  header_any: ["server:.*tensorflow"]
+  cookie_any: []
+  ua_any: []
+- id: torch-serve
+  label: "AI/ML: TorchServe"
+  weight: 90
+  uri_substr: ["/models", "/predictions", "/ping"]
+  header_any: ["ts-", "x-torchserve-"]
+  cookie_any: []
+  ua_any: []
+- id: h2o-ai
+  label: "AI/ML: H2O.ai"
+  weight: 85
+  uri_substr: ["/3/", "/flow/index.html"]
+  header_any: []
+  cookie_any: ["h2o"]
+  ua_any: []
+- id: neptune-ai
+  label: "AI/ML: Neptune.ai"
+  weight: 85
+  uri_substr: ["/api/leaderboard"]
+  header_any: ["x-neptune-"]
+  cookie_any: ["neptune_session"]
+  ua_any: []
+- id: comet-ml
+  label: "AI/ML: Comet.ml"
+  weight: 85
+  uri_substr: ["/api/rest/v2"]
+  header_any: []
+  cookie_any: ["comet_session"]
+  ua_any: []
+- id: paperspace-gradient
+  label: "AI/ML: Paperspace Gradient"
+  weight: 85
+  uri_substr: ["/gradient", "/api/v1/"]
+  header_any: ["x-gradient-"]
+  cookie_any: []
+  ua_any: []
+- id: determined-ai
+  label: "AI/ML: Determined AI"
+  weight: 90
+  uri_substr: ["/api/v1/experiments", "/api/v1/models"]
+  header_any: []
+  cookie_any: ["det_jwt"]
+  ua_any: []
+
+- id: clearml
+  label: "AI/ML: ClearML"
+  weight: 85
+  uri_substr: ["/api/v2.23", "/trains"]
+  header_any: []
+  cookie_any: ["clearml-server-session"]
+  ua_any: []
+- id: verta-ai
+  label: "AI/ML: Verta AI"
+  weight: 85
+  uri_substr: ["/api/v1/modeldb", "/api/v1/deployment"]
+  header_any: ["x-verta-"]
+  cookie_any: []
+  ua_any: []
+- id: algorithmia
+  label: "AI/ML: Algorithmia"
+  weight: 85
+  uri_substr: ["/v1/algo/", "/v1/data/"]
+  header_any: []
+  cookie_any: ["algorithmia_session"]
+  ua_any: []
+- id: datarobot
+  label: "AI/ML: DataRobot"
+  weight: 85
+  uri_substr: ["/api/v2/projects", "/api/v2/models"]
+  header_any: []
+  cookie_any: ["datarobot_session"]
+  ua_any: []
+- id: domino-data-lab
+  label: "AI/ML: Domino Data Lab"
+  weight: 85
+  uri_substr: ["/v4/projects", "/v4/models"]
+  header_any: ["x-domino-"]
+  cookie_any: []
+  ua_any: []
+- id: cnvrg-io
+  label: "AI/ML: Cnvrg.io"
+  weight: 85
+  uri_substr: ["/api/v1/users", "/api/v1/projects"]
+  header_any: []
+  cookie_any: ["_cnvrg_session"]
+  ua_any: []
+- id: polyaxon
+  label: "AI/ML: Polyaxon"
+  weight: 85
+  uri_substr: ["/api/v1/runs", "/api/v1/projects"]
+  header_any: []
+  cookie_any: ["polyaxon_sessionid"]
+  ua_any: []
+- id: pachyderm
+  label: "AI/ML: Pachyderm"
+  weight: 85
+  uri_substr: ["/api/pfs", "/api/pps"]
+  header_any: ["authn-token"]
+  cookie_any: []
+  ua_any: []
+- id: allegro-trains
+  label: "AI/ML: Allegro Trains"
+  weight: 85
+  uri_substr: ["/api/v2.23/tasks", "/api/v2.23/projects"]
+  header_any: []
+  cookie_any: ["trains-server-session"]
+  ua_any: []
+- id: cnvrg
+  label: "AI/ML: Cnvrg"
+  weight: 85
+  uri_substr: ["/api/v1/endpoints"]
+  header_any: []
+  cookie_any: ["_cnvrg_session"]
+  ua_any: []
+- id: sagemaker-notebook
+  label: "AI/ML: AWS SageMaker Notebook"
+  weight: 85
+  uri_substr: ["/api/kernels", "/lab"]
+  header_any: ["x-amzn-sagemaker-"]
+  cookie_any: ["_xsrf"]
+  ua_any: []
+- id: vertex-ai
+  label: "AI/ML: Google Vertex AI"
+  weight: 85
+  uri_substr: ["/v1/projects", "/v1beta1/projects"]
+  header_any: ["x-goog-user-project"]
+  cookie_any: []
+  ua_any: []
+- id: azure-ml
+  label: "AI/ML: Azure Machine Learning"
+  weight: 85
+  uri_substr: ["/modelmanagement/v1.0", "/history/v1.0"]
+  header_any: ["x-ms-azureml-"]
+  cookie_any: []
+  ua_any: []
+- id: dvc-studio
+  label: "AI/ML: DVC Studio"
+  weight: 85
+  uri_substr: ["/api/projects", "/api/experiments"]
+  header_any: []
+  cookie_any: ["studio_session"]
+  ua_any: []
+- id: guild-ai
+  label: "AI/ML: Guild AI"
+  weight: 80
+  uri_substr: ["/api/runs", "/api/compare"]
+  header_any: []
+  cookie_any: ["guild_session"]
+  ua_any: []
+- id: runai
+  label: "AI/ML: Run:AI"
+  weight: 85
+  uri_substr: ["/v1/k8s", "/v1/workloads"]
+  header_any: ["x-runai-"]
+  cookie_any: []
+  ua_any: []
+- id: cnvrg-core
+  label: "AI/ML: Cnvrg Core"
+  weight: 85
+  uri_substr: ["/api/v1/org"]
+  header_any: []
+  cookie_any: ["cnvrg_core_session"]
+  ua_any: []
+- id: databricks-mlflow
+  label: "AI/ML: Databricks MLflow"
+  weight: 85
+  uri_substr: ["/ajax-api/2.0/mlflow"]
+  header_any: []
+  cookie_any: ["databricks_session"]
+  ua_any: []
+- id: feast
+  label: "AI/ML: Feast Feature Store"
+  weight: 85
+  uri_substr: ["/api/v1/features", "/api/v1/entities"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: tecton
+  label: "AI/ML: Tecton"
+  weight: 85
+  uri_substr: ["/api/v1/feature-services"]
+  header_any: ["x-tecton-"]
+  cookie_any: []
+  ua_any: []
+- id: hopsworks
+  label: "AI/ML: Hopsworks"
+  weight: 85
+  uri_substr: ["/hopsworks-api/api", "/project"]
+  header_any: []
+  cookie_any: ["hopsworks_session"]
+  ua_any: []
+- id: flyte
+  label: "AI/ML: Flyte"
+  weight: 85
+  uri_substr: ["/api/v1/projects", "/api/v1/launch_plans"]
+  header_any: []
+  cookie_any: []
+  ua_any: []
+- id: prefect
+  label: "AI/ML: Prefect"
+  weight: 85
+  uri_substr: ["/api/flows", "/api/flow_runs"]
+  header_any: []
+  cookie_any: ["prefect_session"]
+  ua_any: []
+- id: dagster
+  label: "AI/ML: Dagster"
+  weight: 85
+  uri_substr: ["/graphql", "/runs"]
+  header_any: []
+  cookie_any: ["dagster_session"]
+  ua_any: []
+- id: argo-workflows
+  label: "AI/ML: Argo Workflows"
+  weight: 85
+  uri_substr: ["/api/v1/workflows", "/api/v1/workflow-templates"]
+  header_any: []
+  cookie_any: ["argo_session"]
+  ua_any: []
+- id: metabase
+  label: "AI/ML: Metabase"
+  weight: 85
+  uri_substr: ["/api/session", "/api/database"]
+  header_any: []
+  cookie_any: ["metabase.session"]
+  ua_any: []
+- id: superset
+  label: "AI/ML: Apache Superset"
+  weight: 85
+  uri_substr: ["/api/v1/chart", "/api/v1/dashboard"]
+  header_any: []
+  cookie_any: ["session"]
+  ua_any: []
+- id: label-studio
+  label: "AI/ML: Label Studio"
+  weight: 85
+  uri_substr: ["/api/projects", "/api/dm/views"]
+  header_any: []
+  cookie_any: ["sessionid", "csrftoken"]
+  ua_any: []
+- id: labelbox
+  label: "AI/ML: Labelbox"
+  weight: 85
+  uri_substr: ["/graphql", "/api/v1/"]
+  header_any: []
+  cookie_any: ["labelbox_session"]
+  ua_any: []
 - id: zabbix
   label: 'Tech: Zabbix'
   weight: 70
